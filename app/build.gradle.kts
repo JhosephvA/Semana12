@@ -71,6 +71,9 @@ dependencies {
     // Widgets de Google Maps Compose
     implementation("com.google.maps.android:maps-compose-widgets:$mapsComposeVersion")
 
+    // SDK base de Google Maps (obligatorio para renderizar el mapa)
+    //implementation("com.google.android.gms:play-services-maps:18.2.0")
+
 }
 
 // 🔐 Configuración del plugin secrets-gradle-plugin
