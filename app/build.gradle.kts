@@ -60,6 +60,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+
     val mapsComposeVersion = "4.4.1"
 
     // Google Maps Compose
@@ -70,6 +71,11 @@ dependencies {
 
     // Widgets de Google Maps Compose
     implementation("com.google.maps.android:maps-compose-widgets:$mapsComposeVersion")
+
+
+
+    //implementation ("com.google.maps.android:maps-compose:4.1.1")
+
 
     // SDK base de Google Maps (obligatorio para renderizar el mapa)
     //implementation("com.google.android.gms:play-services-maps:18.2.0")
