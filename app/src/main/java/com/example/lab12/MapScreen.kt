@@ -39,18 +39,36 @@ fun MapScreen() {
         }
     }
 
+    val locations = listOf(
+        LatLng(-16.433415, -71.5442652), // JLByR
+        LatLng(-16.4205151, -71.4945209), // Paucarpata
+        LatLng(-16.3524187, -71.5675994)  // Zamacola
+    )
+
     Box(modifier = Modifier.fillMaxSize()) {
         GoogleMap(
             modifier = Modifier.fillMaxSize(),
             cameraPositionState = cameraPositionState
         ) {
             descriptorState.value?.let { descriptor ->
+                // Marcador de Arequipa con imagen personalizada
                 Marker(
                     state = rememberMarkerState(position = arequipaLocation),
                     icon = descriptor,
                     title = "Arequipa, Perú"
                 )
+
+                // Marcadores adicionales con la misma imagen
+                locations.forEach { location ->
+                    Marker(
+                        state = rememberMarkerState(position = location),
+                        icon = descriptor,
+                        title = "Ubicación",
+                        snippet = "Punto de interés"
+                    )
+                }
             }
         }
     }
 }
+
