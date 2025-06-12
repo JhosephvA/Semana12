@@ -5,18 +5,17 @@ import android.graphics.BitmapFactory
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.maps.android.compose.rememberMarkerState
-import androidx.compose.runtime.remember
-
-import androidx.compose.runtime.*
-import com.google.android.gms.maps.model.BitmapDescriptor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -26,6 +25,13 @@ fun MapScreen() {
     val arequipaLocation = LatLng(-16.4040102, -71.559611)
     val cameraPositionState = rememberCameraPositionState {
         position = com.google.android.gms.maps.model.CameraPosition.fromLatLngZoom(arequipaLocation, 12f)
+    }
+    
+    LaunchedEffect(Unit) {
+        cameraPositionState.animate(
+            update = CameraUpdateFactory.newLatLngZoom(LatLng(-16.2520984, -71.6836503), 12f), // Yura
+            durationMs = 3000
+        )
     }
 
     val descriptorState = remember { mutableStateOf<BitmapDescriptor?>(null) }
@@ -58,7 +64,7 @@ fun MapScreen() {
                     title = "Arequipa, Perú"
                 )
 
-                // Marcadores adicionales con la misma imagen
+                // Marcadores adicionales
                 locations.forEach { location ->
                     Marker(
                         state = rememberMarkerState(position = location),
@@ -71,4 +77,3 @@ fun MapScreen() {
         }
     }
 }
-
